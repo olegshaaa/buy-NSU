@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    // 1. Структура файлов (ГДЕ искать код и КУДА его класть)
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "allowJs": true, // Позволяет постепенно мигрировать: .js и .ts могут жить вместе
+
+    // 2. Окружение (Для кого компилируем)
+    "target": "ES2022", // Современный JS, поддерживаемый актуальным Node.js
+    "module": "NodeNext", // Современный стандарт модулей Node.js
+    "moduleResolution": "NodeNext", // Чтобы TS правильно искал импорты в node_modules
+    "types": ["node"], // Обязательно! Чтобы TS знал про process, __dirname и т.д.
+    "lib": ["ES2022"],
+
+    // 3. Совместимость (Критически важно для Express и better-sqlite3)
+    "esModuleInterop": true, // Позволяет делать `import express from 'express'` вместо require
+    "allowSyntheticDefaultImports": true,
+
+    // 4. Строгость (Оставляем твои хорошие настройки, они спасут от багов)
+    "strict": true,
+    "noUncheckedIndexedAccess": true, // Заставляет проверять array[i] на undefined
+    "exactOptionalPropertyTypes": true,
+
+    // 5. Дополнительные полезные настройки
+    "skipLibCheck": true, // Не проверять типы внутри node_modules (ускоряет компиляцию)
+    "isolatedModules": true, // Гарантирует, что каждый файл можно компилировать отдельно
+    "verbatimModuleSyntax": true, // Заставляет писать импорты корректно (без смешивания стилей)
+    
+    // Убрали "jsx": "react-jsx", так как пока мы делаем только бэкенд. 
+    // Если позже добавишь фронтенд в этот же проект, эту строку можно будет вернуть.
+  },
+  "include": ["src/**/*"], // Компилировать только то, что в папке src
+  "exclude": ["node_modules", "dist"] // Игнорировать эти папки
+}
